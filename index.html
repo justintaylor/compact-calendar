@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>Compact Calendar</title>
+        <style>
+            @media print {
+                body {
+                    font-family: Verdana,sans-serif;
+                    font-size: 10px;
+                    line-height: 1.4;
+                }
+            }
+            @media all {
+                table {
+                    border-collapse: collapse;
+                    text-align: center;
+                }
+                thead tr th{
+                    border-bottom: 1px solid black;
+                }
+                .borderBottom {
+                    border-bottom: 1px solid black;
+                }
+                .borderLeft {
+                    border-left: 1px solid black;
+                }
+                .borderTop {
+                    border-top: 1px solid black;
+                }
+                .bold {
+                    font-weight: bold;
+                }
+                .birthday {
+                    font-weight: bold;
+                }
+                .holiday {
+                    font-style: italic;
+                }
+                .multiDay {
+                    text-decoration: underline;
+                }                
+    	        .month {
+    				border-right: 1px solid black;
+                    border-top: 1px solid black;
+                }
+                .monthNoBorder {
+                    border-top: 1px solid black;
+                }
+                .emptyMonth {
+
+                }
+                .events {
+                    text-align: left;
+                    padding-left: 3px;
+                }
+            }
+        </style>
+        <script src="libs/moment.min.js" type="text/javascript"></script>
+        <script src="dates.js" type="text/javascript"></script>
+        <script src="display.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th class='month'>Month</th>
+                    <th class='borderTop'>Sun</th>
+                    <th class='borderTop'>Mo</th>
+                    <th class='borderTop'>Tu</th>
+                    <th class='borderTop'>We</th>
+                    <th class='borderTop'>Th</th>
+                    <th class='borderTop'>Fr</th>
+                    <th class='borderTop'>Sat</th>
+                </tr>
+            </thead>
+            <!--tbody id="calendar"></tbody-->
+            <tbody id="calendarNew"></tbody>
+        </table>
+        <script type="text/javascript">display()</script>
+    </body>
+</html>
