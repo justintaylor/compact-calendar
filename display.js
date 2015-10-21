@@ -1,29 +1,47 @@
-
-var currentDate, week, index = 0;
-var dateFormat = 'MM/DD/YYYY';
+var dateFormat = 'MM/DD/YYYY',
+  nextYear = year + 1;
 
 function display() {
-    var output = '',
-        nextYear = year + 1,
-        dayOfYear = 0,
-        date = 0,
-        borderType = '',
-        borders = false,
-        weekDay = 0;
-    currentDate = moment('01/01/' + year, dateFormat);
+    var week,
+      index = 0,
+      output = '',
+      dayOfYear = 0,
+      date = 0,
+      borderType = '',
+      borders = false,
+      weekDay = 0,
+      currentDate = moment().millisecond(0).second(0).minute(0).hour(0),
+      startDate = moment(currentDate).date(1),
+      endDate = moment(startDate).add(1, 'y'),
+      dayOfYearOffset = startDate.dayOfYear();
 
-    // generate an array of all days of the year
-    var dates = [ {date: moment(currentDate), desc: '', class: ''} ];
-    for(i = 1; moment(dates[dates.length-1].date).add(1, 'd').year() !== nextYear; i++) {
+    // generate an array starting with the first of the current month through the next year
+    var dates = [ {date: moment(startDate), desc: '', class: ''} ];
+    for(i = 1; moment(dates[dates.length-1].date).add(1, 'd').isBefore(endDate, 'day'); i++) {
   // TODO: what about adding border information here???
-        dates.push({date: moment(currentDate).add(i, 'd'), desc: '', class: ''});
+        dates.push({date: moment(startDate).add(i, 'd'), desc: '', class: ''});
     }
 
     // loop through the activities and add their info to the dates array
     for (i = 0; i < activities.length; i++) {
         activities[i].date = moment(activities[i].date, dateFormat);
 
-        dayOfYear = activities[i].date.dayOfYear() -1;
+        // add a second iteration of holidays and birthdays
+        if (activities[i].holiday || activities[i].birth) {
+            addSecondIteration(i);
+        }
+
+        // determine if activity is in the past or too far in the future, and skip it
+        if(activities[i].date.isBefore(startDate, 'day') || activities[i].date.isAfter(endDate, 'day')) {
+            continue;
+        }
+
+        // tweak offset based on activity year
+        if (activities[i].date.year() === year) {
+            dayOfYear = activities[i].date.dayOfYear() - dayOfYearOffset;
+        } else {
+            dayOfYear = activities[i].date.dayOfYear() - dayOfYearOffset + 365;
+        }
 
         // determine what to do with the activity (style is determined by css)
         if (activities[i].holiday) {
@@ -46,8 +64,6 @@ function display() {
         } else {
             dates[dayOfYear].desc += '<span class="bold">' + activities[i].date.format("ddd") + "</span>: " + activities[i].desc + "; ";
         }
-
-
     }
 
     // OUTPUT
@@ -123,4 +139,29 @@ function display() {
     }
 
     document.getElementById('calendarNew').innerHTML = output;
+}
+
+function addSecondIteration(m) {
+    // add a second iteration (the following year), for the specified activity
+    var next = new Object({});
+    next.desc = activities[m].desc;
+    next.date = moment(activities[m].date).add(1, 'y');
+
+    // verify second iteration hasn't already been created
+    if (next.date.year() > nextYear) {
+        return;
+    }
+
+    // change to string
+    next.date = next.date.format(dateFormat);
+
+    if (activities[m].holiday) {
+        next.holiday = true;
+    }
+
+    if (activities[m].birth) {
+        next.birth = activities[m].birth;
+    }
+
+    activities.push(next);
 }
