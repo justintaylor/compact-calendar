@@ -12,6 +12,9 @@ A full year on a single page with room for event information and even notes
 ## currentMonthFirst branch
 Check this branch out for a calendar format of the current month and the next 11 months instead of the calendar year
 
+[Live Example](https://jsbin.com/deyise)
+
+
 ## Configuration
 * Install [npm](http://nodejs.org/download/) (if not already installed)
 * Run `npm install` from within the project directory to get the [moment](http://momentjs.com) library

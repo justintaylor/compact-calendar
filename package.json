@@ -2,7 +2,7 @@
     "name": "compact-calendar",
     "version": "1.0.0",
     "license": "BSD",
-    "author": "Justin Taylor - justin.e.taylor@outlook.com"
+    "author": "Justin Taylor - justin.e.taylor@outlook.com",
     "repository": {
         "type": "git",
         "url": "https://github.com/justintaylor/compact-calendar"
