@@ -4,6 +4,8 @@ Inspired by Dave Seah's [Compact Calendar](http://davidseah.com/node/compact-cal
 
 A full year on a single page with room for event information and even notes
 
+[Live Example](https://output.jsbin.com/visico)
+
 * Add/edit dates in the dates.js file to customize
 * Durations, holidays and birthdays can be styled via css however you like
 
@@ -20,4 +22,4 @@ Check this branch out for a calendar format of the current month and the next 11
 - [ ] add I18n capabilities (for practice), for Month and Day names
 - [ ] add the ability to handle dynamic dynamic dates (like Thanksgiving)
 - [ ] add [handlebars](https://www.npmjs.com/package/handlebars)
-- [ ] add links in this readme to live examples on jsbin
+- [x] add links in this readme to live examples on jsbin
