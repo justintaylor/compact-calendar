@@ -21,8 +21,9 @@ Check this branch out for a calendar format of the current month and the next 11
 * Open the `index.html` file in your browser, no web server needed
 
 ## TODO
+- [ ] refactor and add the ability to specify data file with url param (data file will also specify display type)
 - [ ] figure out what to do when there is too much info on a line to display it
 - [ ] add I18n capabilities (for practice), for Month and Day names
-- [ ] add the ability to handle dynamic dynamic dates (like Thanksgiving)
+- [ ] add the ability to handle dynamic dates (like Thanksgiving)
 - [ ] add [handlebars](https://www.npmjs.com/package/handlebars)
 - [x] add links in this readme to live examples on jsbin
