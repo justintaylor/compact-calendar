@@ -69,7 +69,7 @@ function display() {
     // OUTPUT
 
     // show month name
-    output = "<td class='monthNoBorder'><strong>" + currentDate.format('MMM') + '</strong></td>';
+    //output = "<td class='monthNoBorder'><strong>" + currentDate.format('MMM') + '</strong></td>';
 
     // empty cells leading up to the first
     for (i = 0; i < dates[0].date.weekday(); i++) {
@@ -86,7 +86,7 @@ function display() {
             // check to see how many month's we've output (this won't show Jan of next year after Dec)
             // check to see if today is the first of the month
             // check to see if next month is show in this week
-            if (monthsOutput <= 10 && (dates[i].date.date() === 1 || moment(dates[i].date).add(6, 'days').month() !== dates[i].date.month())) {
+            if (monthsOutput <= 11 && (dates[i].date.date() === 1 || moment(dates[i].date).add(6, 'days').month() !== dates[i].date.month())) {
                 if (dates[i].date.date() === 1) {
                     output += "<td class='monthNoBorder'><strong>" + moment(dates[i].date).add(6, 'days').format('MMM') + '</strong></td>';
                 } else {
